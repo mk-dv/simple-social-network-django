@@ -14,9 +14,16 @@ def user_login(request):
             user = authenticate(
                 request, username=cd['username'], password=cd['password']
             )
-
+        # TODO(mk-dv): Translate this comment.
+        # TODO(mk-dv): Check comment for grammar.
         if user is not None:
             if user.is_active:
+                # TODO(mk-dv): Translate this comment.
+                # Видимо здесь происходит вся магия, 'login' привязывает
+                # пользователя к сессии.
+                # saves the user’s ID in the session, using Django’s session framework.(middleware?)
+                # Note that any data set during the anonymous session is
+                # retained in the session after a user logs in.
                 login(request, user)
                 return HttpResponse('Authenticated successfully')
             else:

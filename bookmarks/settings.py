@@ -30,14 +30,18 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# TODO(mk-dv): Translate comment.
+# dj ищет шаблоны во всех приложениях по очереди, при переопределении шаблонов
+# login/logout будет использован первый попавшийся -> приложение должно быть
+# до django admin(это не очень соотносится с моим cookiecutter template)
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -101,9 +105,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Log-in
-
+# TODO(mk-dv): Translate comments
+# указывает адрес куда dj будет перенаправлять пользователя при успешной
+# авторизации
 LOGIN_REDIRECT_URL = 'dashboard'
+# перенаправить сюда if пользователь не авторизован
 LOGIN_URL = 'login'
+# адрес перейдя по которому пользователь выйдет из акка
 LOGOUT_URL = 'logout'
 
 # Internationalization
@@ -124,3 +132,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# EMAIL
+
+# Определяет класс используемый для отправки email.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
