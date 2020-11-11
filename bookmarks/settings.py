@@ -122,10 +122,15 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# Media
+# -----------------------------------------------------------------------------
 
-STATIC_URL = '/static/'
+# Базовый url для формирования адресов медиа-файлов
+MEDIA_URL = '/media/'
+
+# Возможно именно поэтому требуется несколько settings.py
+# Указываем где dj хранить медиафайлы пользователей
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 

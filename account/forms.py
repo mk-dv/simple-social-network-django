@@ -1,10 +1,26 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from .models import Profile
+
 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+# Изменение полей User from django.contrib.auth.models
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+
+# Изменение полей профиля
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('date_of_birth', 'photo')
 
 
 # Этот класс очень похож на UserCreationForm from django.contrib.auth.forms
@@ -25,7 +41,7 @@ class UserRegistrationForm(forms.ModelForm):
         # unique=True
         fields = ('username', 'first_name', 'email')
 
-    # TODO(mk-dv): Возможно должен быть выше Meta
+
     # Можно добавлять методы clean_<field_name> к любому полю, для
     # автоматической проверки, при ошибке - она привязывается к этому полю
     # Применяется для проверки взаимосвязанных полей.
