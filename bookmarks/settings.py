@@ -11,21 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dynaconf
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@juyd*gto_@!uy%_z%q9=lj9l8g^w5aq-*jb#l_la9g_b3eu*g'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -76,8 +65,9 @@ WSGI_APPLICATION = 'bookmarks.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+#------------------------------------------------------------------------------
 
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -87,8 +77,9 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
+#------------------------------------------------------------------------------
 
+# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -105,17 +96,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Log-in
+#------------------------------------------------------------------------------
 # TODO(mk-dv): Translate comments
 # указывает адрес куда dj будет перенаправлять пользователя при успешной
 # авторизации
 LOGIN_REDIRECT_URL = 'dashboard'
+
 # перенаправить сюда if пользователь не авторизован
 LOGIN_URL = 'login'
+
 # адрес перейдя по которому пользователь выйдет из акка
 LOGOUT_URL = 'logout'
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
+#------------------------------------------------------------------------------
 
 LANGUAGE_CODE = 'en-us'
 
@@ -134,7 +128,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# EMAIL
 
-# Определяет класс используемый для отправки email.
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# HERE STARTS DYNACONF EXTENSION LOAD (Keep at the very bottom of settings.py)
+# Read more at https://dynaconf.readthedocs.io/en/latest/guides/django.html
+settings = dynaconf.DjangoDynaconf(__name__)  # noqa
+# HERE ENDS DYNACONF EXTENSION LOAD (No more code below this line)
