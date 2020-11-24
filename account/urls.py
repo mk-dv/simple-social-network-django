@@ -7,26 +7,26 @@ urlpatterns = [
     # path('login/', auth_views.LoginView.as_view(), name='login'),
     # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', views.dashboard, name='dashboard'),
-    # TODO(mk-dv): Translate comment.
-    # auth_views.PasswordChangeView проверяет форму смены пароля.
-    # использует шаблон <app>/registration/password_change_form.html
-    # TODO(mk-dv): Как указать путь к шаблону?
+    # An `auth_views.PasswordChangeView` validates the password change form,
+    # and uses the template `<app>/registration/password_change_form.html`.
     # path(
     #     'password_change/',
     #     auth_views.PasswordChangeView.as_view(),
     #     name='password_change'
     # ),
-    # auth_views.PasswordChangeDoneView отображает msg об успешной смене пароля
-    # использует шаблон <app>/registration/password_change_done.html
-    # TODO(mk-dv): Как указать путь к шаблону?
+    # An `auth_views.PasswordChangeDoneView` displays a message about
+    # successful password change using the template
+    # `<app>/registration/password_change_done.html`.
     # path(
     #     'password_change/done',
     #     auth_views.PasswordChangeDoneView.as_view(),
     #     name='password_change_done'
     # ),
-    # Обработчики восстановления пароля
-    # Производит отправку письма только if указанный email ПРИНАДЛЕЖ одному из
-    # пользователей
+
+    # Password recovery paths.
+
+    # Sends an email only if the specified email belongs to one of the existing
+    # users.
     # path(
     #     'password_reset/',
     #     auth_views.PasswordResetView.as_view(),
@@ -37,7 +37,7 @@ urlpatterns = [
     #     auth_views.PasswordResetDoneView.as_view(),
     #     name='password_reset_done'
     # ),
-    # PasswordResetView принимает uidb64 и token
+    # PasswordResetView gets kwargs `uidb64` and `token`.
     # path(
     #     'reset/<uidb64>/<token>/',
     #     auth_views.PasswordResetConfirmView.as_view(),
