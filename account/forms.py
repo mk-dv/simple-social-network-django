@@ -28,7 +28,6 @@ class UserRegistrationForm(forms.ModelForm):
     # У форм реализован clean() валидирующий всю форму - используется для
     # проверки взаимосвязанных полей.
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    # TODO(mk-dv): Rename to password_repeat
     password2 = forms.CharField(
         label='Repeat password',
         widget=forms.PasswordInput
@@ -41,11 +40,9 @@ class UserRegistrationForm(forms.ModelForm):
         # unique=True
         fields = ('username', 'first_name', 'email')
 
-
-    # Можно добавлять методы clean_<field_name> к любому полю, для
-    # автоматической проверки, при ошибке - она привязывается к этому полю
-    # Применяется для проверки взаимосвязанных полей.
-    # TODO(mk-dv): Переименовать.
+    # You can add `clean_ <field_name>` methods for any field, for automatic
+    # check, if error occurred - check is bound to this field. Is used to check
+    # related fields.
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
