@@ -1,26 +1,28 @@
-'''
-Модель пользователя dj содержит min набор полей. Для сохранения доп данных
-создадим модель профиля со ссылкой OneToOne
-'''
+"""
+The Django user model(`User` from `django.contrib.auth.models`) contains a
+minimal set of fields. To save additional data, possible to create a profile
+model and link them using `OneToOneField`.
+"""
+
 from django.db import models
 from django.conf import settings
 
 
-# Мне кажется довольно логичным, отделять необязательную информацию профиля от,
-# собственно, пользователя(и даже не кажется, что стандартная модель User dj -
-# СОДЕРЖ какие-либо лишние данные.
+# It seems quite logical to me to separate the optional profile information
+# from the actual user (and it doesn't even seem that the standard Django
+# `User` model contains any extra data).
 class Profile(models.Model):
-    # Чтобы код не зависел от конкретного пользователя - используем
-    # [get_user_model(), возвращающую]: бредни вроде
-    # модель указанную в settins.AUTH_USER_MODEL
+    # To make the code independent of a specific user, use
+    #  model specified in `settings.AUTH_USER_MODEL` (maybe `get_user_model ()`
+    #  is somehow involved here).
 
-    # Связываем новые данные с конкретными пользователями
-    # Связаные с пользователем данные будут удалены при удалении User
-    # (а наоборот?)
+    # Associate `Profile` with specific `User`.User-related `Profile` will be
+    # deleted when the `User` is deleted.
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
-    # Требует Pillow, иначе запускающийся SystemCheck выдаст ошибку
+    # Requires the `Pillow`, otherwise, the `SystemCheck` will throw an
+    # exception.
     photo = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)
 
     def __str__(self):
