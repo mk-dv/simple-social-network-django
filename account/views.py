@@ -9,11 +9,12 @@ from .forms import (
 from .models import Profile
 
 
-# Сохранение изменений профиля.
+# Saving profile changes.
 @login_required
 def edit(request):
     if request.method == 'POST':
-        # Походу у __call__ форм есть именованные args 'instance' & 'data'
+        # Apparently, `<form> .__ call __ ()` can take named arguments
+        # `instance` and `data`. (Yes, I know this is an obvious comment)
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(
             instance=request.user.profile,
@@ -33,24 +34,21 @@ def edit(request):
     )
 
 
-
-
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
+        user = None
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(
                 request, username=cd['username'], password=cd['password']
             )
-        # TODO(mk-dv): Translate this comment.
-        # TODO(mk-dv): Check comment for grammar.
         if user is not None:
             if user.is_active:
-                # TODO(mk-dv): Translate this comment.
-                # Видимо здесь происходит вся магия, 'login' привязывает
-                # пользователя к сессии.
-                # saves the user’s ID in the session, using Django’s session framework.(middleware?)
+                # Apparently, all the magic happens here, `login` from
+                # `django.contrib.auth` binds the user to the session.
+                # Saves the user’s ID in the session, using Django’s session
+                # framework(middleware?).
                 # Note that any data set during the anonymous session is
                 # retained in the session after a user logs in.
                 login(request, user)
@@ -74,28 +72,21 @@ def register(request):
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
             new_user = user_form.save(commit=False)
-            # За счет использования User from django.contrib.auth пароль
-            # сохраняется в бд в зашиврованном виде.(содержит префикс с частью
-            # '_sha256'
-            # set_password сохраняет пароль с шифрованием
+            # By using `User` from` django.contrib.auth`, the password
+            # is stored in the database in an encrypted form (contains a prefix
+            # with a part `_sha256`) -` set_password` encrypts the password.
             new_user.set_password(user_form.cleaned_data['password'])
-
             new_user.save()
-            # Создаем пустой профиль
-            # TODO(mk-dv): Видится мне хреновой идеей - может лучше делать это
-            # как-то внутри модели User?(ps. у меня не очень-то есть
-            # доступ(придется писать свой менеджер).
-            # Secondary Должен быть сохранен после primary, иначе не на что
-            # ссылаться.
+            # Create a blank profile.
             Profile.objects.create(user=new_user)
-            # TODO(mk-dv): Подумать над стилем.
+
             return render(
                 request,
                 'account/register_done.html',
                 {'new_user': new_user}
             )
     else:
+        # The form contains either input fields, data fields, or additional
+        # tags with errors.
         user_form = UserRegistrationForm()
-        # Форма содержит либо поля для ввода, либо поля с данными либо дополни
-        # тельные теги с ошибками.
     return render(request, 'account/register.html', {'user_form': user_form})
