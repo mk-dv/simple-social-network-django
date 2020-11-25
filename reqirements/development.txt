@@ -1,2 +1,0 @@
--r ./base.txt
-django-extensions==3.0.9
