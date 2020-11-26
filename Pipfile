@@ -7,13 +7,13 @@ name = "pypi"
 django = "==2.2.7"
 dynaconf = "*"
 pillow = "*"
-pylava = "*"
 
 [dev-packages]
 django-extensions = "*"
 flake8-django = "*"
 pylint-django = "*"
 pytest = "*"
+pylava = "*"
 pylint-runner = "*"
 
 [requires]
