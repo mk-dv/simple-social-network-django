@@ -12,6 +12,7 @@ from .models import Profile
 
 @login_required
 def edit(request):
+    """Saving profile changes."""
     if request.method == 'POST':
         # Apparently, `<form> .__ call __ ()` can take named arguments
         # `instance` and `data`. (Yes, I know this is an obvious comment)
