@@ -31,6 +31,19 @@
         {% endif %}
       </span>
     </div>
+    {# A Django message system connect the #}
+    {# `django.contrib.messages.context_processor.messages` authomatically, #}
+    {# it add a `messages` variable to template context #}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          {# https://docs.djangoproject.com/en/2.2/ref/contrib/messages/#message-tags #}
+          <li class="{{ message.tags }}">
+            {{ message|safe }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     <div id="content">
       {% block content %}{% endblock %}
     </div>
