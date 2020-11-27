@@ -85,6 +85,14 @@ TEMPLATES = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# AUTHENTICATION
+# -----------------------------------------------------------------------------
+
+# https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-AUTHENTICATION_BACKENDS
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+]
 # PASSWORD VALIDATION
 # -----------------------------------------------------------------------------
 
