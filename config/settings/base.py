@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).parents[2]
 # therefore the application with the redefined templates must be before
 # `django.contrib.admin` app.
 LOCAL_APPS = [
-    'account.apps.AccountConfig',
+    'bookmarks.apps.account.apps.AccountConfig',
 ]
 
 DJANGO_APPS = [

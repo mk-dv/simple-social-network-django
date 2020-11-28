@@ -22,7 +22,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('account.urls')),
+    path('account/', include('bookmarks.apps.account.urls')),
 ]
 
 # Now Django development server can send media files by URL.
