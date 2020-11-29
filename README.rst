@@ -35,7 +35,7 @@ Using Dynaconf_ for configuration
 
 Dynaconf makes it easy to change the source and format of the settings. Supports many configuration file formats, external storages, environment variables, databases, etc. See https://www.dynaconf.com/ for more information. All configuration files are stored in a separate application called `config`. The settings are moved to the `config.settings` module, and are divided into development and production.
 
-Basic settings are set in the `config.settings.base` module. Configs for development and production are set in the files `config/settings/development.toml` and `config/settings/production.toml`, for switching between environments use environement variable `BOOKMARKS_ENV`.
+Basic settings are set in the `config.settings.base` module. Configs for development and production are set in the files `config/settings/development.toml` and `config/settings/production.toml`, for switching between environments use environment variable `BOOKMARKS_ENV`.
 
 .. _Dynaconf: https://www.dynaconf.com/
 
@@ -64,8 +64,8 @@ The project contains configs for flake8 and pylint linters:
     $ pylint <path_to_check>
 
 
-Gettings started
-----------------
+Getting started
+---------------
 
 Create a database
 ^^^^^^^^^^^^^^^^^

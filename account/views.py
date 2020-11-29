@@ -8,7 +8,16 @@ from .models import Profile
 
 @login_required
 def edit(request):
-    """Saving profile changes."""
+    """Save profile changes.
+
+    Args:
+        request (HttpRequest):
+            Request with user profile data passed with the `GET` method.
+
+    Returns:
+        An `HttpResponse` with search results.
+    """
+
     if request.method == 'POST':
         # Apparently, `<form> .__ call __ ()` can take named arguments
         # `instance` and `data`. (Yes, I know this is an obvious comment)
@@ -40,6 +49,17 @@ def dashboard(request):
 
 
 def register(request):
+    """Register new user.
+
+    Args:
+        request (HttpRequest):
+            Request with user `name`, `first_name` and `password` passed with
+             the `GET` method.
+
+    Returns:
+        An `HttpResponse` with search results.
+    """
+
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():

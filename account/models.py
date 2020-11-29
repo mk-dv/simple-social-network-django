@@ -1,7 +1,6 @@
 """
-The Django user model(`User` from `django.contrib.auth.models`) contains a
-minimal set of fields. To save additional data, possible to create a profile
-model and link them using `OneToOneField`.
+
+
 """
 
 from django.db import models
@@ -12,6 +11,15 @@ from django.conf import settings
 # from the actual user (and it doesn't even seem that the standard Django
 # `User` model contains any extra data).
 class Profile(models.Model):
+    """
+    <Descriptions>
+
+    Attributes:
+
+    The Django user model(`User` from `django.contrib.auth.models`) contains a
+     minimal set of fields. To save additional data, possible to create a
+     profile model and link them using `OneToOneField`.
+    """
     # To make the code independent of a specific user, use
     #  model specified in `settings.AUTH_USER_MODEL` (maybe `get_user_model ()`
     #  is somehow involved here).

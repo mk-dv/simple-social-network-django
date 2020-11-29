@@ -1,7 +1,8 @@
-"""bookmarks URL Configuration
+"""
+The `bookmarks` URL configuration.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-https://docs.djangoproject.com/en/2.2/topics/http/urls/
+The `urlpatterns` is list of routes URLs to views. For more information please
+ see: https://docs.djangoproject.com/en/2.2/topics/http/urls/
 
 Examples:
     Function views

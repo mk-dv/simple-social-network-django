@@ -9,8 +9,9 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-# Changing `User` fields from `django.contrib.auth.models`.
 class UserEditForm(forms.ModelForm):
+    """Changing `User` fields from `django.contrib.auth.models`."""
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
