@@ -95,7 +95,14 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
     'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.vk.VKOAuth2',
 ]
+
+# SOCIAL AUTH
+# -----------------------------------------------------------------------------
+
+# Add an access request for user email while registration by Vkontakte account.
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
 # PASSWORD VALIDATION
 # -----------------------------------------------------------------------------

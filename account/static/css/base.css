@@ -191,6 +191,17 @@ ul.messages li a.close {
 .social li.twitter { background:#00cffa; }
 .social li.google { background:#de1710; }
 
+.social li.twitter {
+  background: #00cffa;
+}
+
+.social li.google {
+  background: #de1710;
+}
+
+.social li.vkontakte {
+  background: #4f7194;
+}
 
 /* images */
 
