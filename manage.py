@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+from pathlib import Path
 import os
 import sys
 
@@ -17,6 +18,12 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    # This allows easy placement of apps within the interior
+    # `bookmarks` directory.
+    current_path = Path(__file__).parent.resolve()
+    sys.path.append(str(current_path / 'bookmarks' / 'apps'))
+
     execute_from_command_line(sys.argv)
 
 

@@ -23,7 +23,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('account.urls')),
+    path('account/', include('bookmarks.apps.account.urls')),
     # List of auth-backends supported by `social_django`
     # https://python-social-auth.readthedocs.io/en/latest/backends/index.html#supported-backends
     path('social-auth/', include('social_django.urls', namespace='social')),
