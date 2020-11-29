@@ -94,7 +94,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
+    'social_core.backends.google.GoogleOAuth2',
 ]
+
 # PASSWORD VALIDATION
 # -----------------------------------------------------------------------------
 
