@@ -20,6 +20,7 @@ class Profile(models.Model):
      minimal set of fields. To save additional data, possible to create a
      profile model and link them using `OneToOneField`.
     """
+
     # To make the code independent of a specific user, use
     #  model specified in `settings.AUTH_USER_MODEL` (maybe `get_user_model ()`
     #  is somehow involved here).
