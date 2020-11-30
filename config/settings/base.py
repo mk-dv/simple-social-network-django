@@ -30,6 +30,7 @@ BASE_DIR = Path(__file__).parents[2]
 # `django.contrib.admin` app.
 LOCAL_APPS = [
     'bookmarks.apps.account.apps.AccountConfig',
+    'bookmarks.apps.images.apps.ImagesConfig',
 ]
 
 DJANGO_APPS = [
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-AUTHENTICATION_BACKENDS
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend',
+    'bookmarks.apps.account.authentication.EmailAuthBackend',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.vk.VKOAuth2',
 ]
