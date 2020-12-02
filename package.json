@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "stylelint": "latest",
+    "snyk": "latest"
+  }
+}
