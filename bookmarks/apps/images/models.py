@@ -4,7 +4,6 @@ from django.utils.text import slugify
 
 
 class Image(models.Model):
-    # TODO(mk-dv): Check for grammar.
     """
     An image is added by an user.
 
@@ -20,7 +19,7 @@ class Image(models.Model):
         description (TextField):
             Image description.
         url (URLField):
-            Link to source of image.
+            Link to source of the image.
         slug (SlugField):
             Image slug generated from title.
         created (DateField):
@@ -41,7 +40,7 @@ class Image(models.Model):
         blank=True
     )
 
-    title = models.CharField(max_length=200),
+    title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     url = models.URLField()
     slug = models.SlugField(max_length=200, blank=True)
