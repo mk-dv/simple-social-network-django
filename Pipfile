@@ -13,6 +13,7 @@ social-auth-app-django = "*"
 [dev-packages]
 coverage = "*"
 django-extensions = "*"
+flake8-commas = "*"
 flake8-django = "*"
 pylint-django = "*"
 pytest = "*"
