@@ -1,9 +1,9 @@
 # Contributors
 
-<!--## Core Developers
+## Core Developers
 
 These contributors have commit flags for the repository, and are able to
-accept and merge pull requests.-->
+accept and merge pull requests.
 
 <table>
   <tr>
