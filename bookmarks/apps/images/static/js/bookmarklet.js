@@ -37,7 +37,7 @@
       jQuery('#bookmarklet').remove();
     });
 
-    // Find images and display them.
+    // Find images and display them. Use `jQuery.each` to iterate over them.
     jQuery.each(jQuery('img[src$="jpg"]'), function(index, image) {
       if (jQuery(image).width() >= MIN_WIDTH
           && jQuery(image).height() >= MIN_HEIGHT)
@@ -76,9 +76,6 @@
   if(typeof window.jQuery != 'undefined') {
     bookmarklet();
   } else {
-    // Check for conflicts.
-    // var conflict = typeof window.$ != 'undefined';
-
     // Create the script and point to Google API.
     let script = document.createElement('script');
     const JQUERY_URL = [
@@ -98,7 +95,7 @@
           // if not loaded - try again.
           window.setTimeout(arguments.callee, JQUERY_TIMEOUT_ATTEMPTS);
         } else {
-          // Too much attempts to load, send error.
+          // Too many attempts to load, send error.
           console.log('An error ocurred while loading jQuery');
         }
       } else {
@@ -106,5 +103,4 @@
       }
     })();
   }
-
 })();
