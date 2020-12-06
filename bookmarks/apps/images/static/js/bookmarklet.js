@@ -24,7 +24,7 @@
     box_html = [
         '<div id="bookmarklet"><a href="#" id="close">&times;</a>',
         '<h1>Select an image to bookmark:</h1><div class="images"></div></div>'
-    ].join('')
+    ].join('');
 
     // Add all finded images from a third-party site to its `<body>`.
     jQuery('body').append(box_html);
@@ -63,7 +63,7 @@
         '&title=',
         encodeURIComponent(jQuery('title').text()),
         '_blank'
-      ].join('')
+      ].join('');
 
       window.open(url);
     });
@@ -84,7 +84,7 @@
     const JQUERY_URL = [
       `http://ajax.googleapis.com/ajax/libs/jquery/${JQUERY_VERSION}`,
       '/jquery.min.js'
-    ].join('')
+    ].join('');
     script.setAttribute('src', JQUERY_URL);
     // Add the script to the `<head>` for processing.
     document.getElementsByTagName('head')[0].appendChild(script);
@@ -96,10 +96,10 @@
         if(--attempts > 0) {
           // Calls himself in a few milliseconds.
           // if not loaded - try again.
-          window.setTimeout(arguments.callee, JQUERY_TIMEOUT_ATTEMPTS)
+          window.setTimeout(arguments.callee, JQUERY_TIMEOUT_ATTEMPTS);
         } else {
           // Too much attempts to load, send error.
-          console.log('An error ocurred while loading jQuery')
+          console.log('An error ocurred while loading jQuery');
         }
       } else {
           bookmarklet();
@@ -107,4 +107,4 @@
     })();
   }
 
-})()
+})();
