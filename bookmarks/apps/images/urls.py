@@ -5,6 +5,8 @@ from . import views
 app_name = 'images'
 
 urlpatterns = [
-    # REST POST
+    # POST
     path('create/', views.image_create, name='create'),
+    # GET
+    path('detail/<int:id>/<slug:slug>/', views.image_detail, name='detail'),
 ]
