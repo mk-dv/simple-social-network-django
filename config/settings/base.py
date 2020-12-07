@@ -43,7 +43,10 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    # https://python-social-auth.readthedocs.io/en/latest/
     'social_django',
+    # https://sorl-thumbnail.readthedocs.io/en/latest/
+    'sorl.thumbnail',
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

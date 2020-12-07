@@ -4,9 +4,15 @@
 
 {% block content %}
   <h1>{{ image.title }}</h1>
-  <img class="image-detail"
-       src="{{ image.image.url }}"
-       alt="{{ image.title }}">
+{#  <img class="image-detail"#}
+{#       src="{{ image.image.url }}"#}
+{#       alt="{{ image.title }}">#}
+  {% load thumbnail %}
+  {% thumbnail image.image "300" as preview %}
+    <a href="{{ image.image.url }}">
+      <img class="image-detail" src="{{ preview.url }}">
+    </a>
+  {% endthumbnail %}
   {% with total_likes=image.users_like.count %}
     <div class="image-info">
       <div>
