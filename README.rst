@@ -39,9 +39,17 @@ Features
 Using Dynaconf_ for configuration
 ---------------------------------
 
-Dynaconf makes it easy to change the source and format of the settings. Supports many configuration file formats, external storages, environment variables, databases, etc. See https://www.dynaconf.com/ for more information. All configuration files are stored in a separate application called `config`. The settings are moved to the `config.settings` module, and are divided into development and production.
+Dynaconf makes it easy to change the source and format of the settings.
+Supports many configuration file formats, external storages, environment
+variables, databases, etc. See https://www.dynaconf.com/ for more information.
+All configuration files are stored in a separate application called `config`.
+The settings are moved to the `config.settings` module, and are divided into
+development and production.
 
-Basic settings are set in the `config.settings.base` module. Configs for development and production are set in the files `config/settings/development.toml` and `config/settings/production.toml`, for switching between environments use environment variable `BOOKMARKS_ENV`.
+Basic settings are set in the `config.settings.base` module. Configs for
+development and production are set in the files
+`config/settings/development.toml` and `config/settings/production.toml`, for
+switching between environments use environment variable `BOOKMARKS_ENV`.
 
 .. _Dynaconf: https://www.dynaconf.com/
 
@@ -49,20 +57,25 @@ Basic settings are set in the `config.settings.base` module. Configs for develop
 Credential data
 ---------------
 
-The credentials are stored in a separate `.secrets.toml` file included in `.gitignore`, and can optionally be stored in any convenient location with dynaconf.
+The credentials are stored in a separate `.secrets.toml` file included in
+`.gitignore`, and can optionally be stored in any convenient location with
+dynaconf.
 
 
 Using linters
 -------------
 
-If you wish to check code of the project - you need to install development dependencies:
+If you wish to check code of the project - you need to install development
+dependencies:
 
 ::
 
     $ pipenv install --dev
 
-The project has configs for flake8 and pylint linters - you can use pylava_ to test an entire project with multiple linters at a time.
-Pylava_ is a wrapper over many linters includes pycodestyle, pydocstyle, pyflakes, pylint, and others. For check - just run:
+The project has configs for flake8 and pylint linters - you can use pylava_ to
+test an entire project with multiple linters at a time. Pylava_ is a wrapper
+over many linters includes pycodestyle, pydocstyle, pyflakes, pylint, and
+others. For check - just run:
 
 .. _Pylava: https://github.com/pylava/pylava
 
@@ -207,7 +220,10 @@ Linux
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
 
-* To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+* To create a **normal user account**, just go to Sign Up and fill out the
+  form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go
+  to your console to see a simulated email verification message. Copy the link
+  into your browser. Now the user's email should be verified and ready to go.
 
 * To create an **superuser account**, use this command
 
@@ -223,9 +239,9 @@ Linux:
 
     $ python3 manage.py createsuperuser
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
-
-
+For convenience, you can keep your normal user logged in on Chrome and your
+superuser logged in on Firefox (or similar), so that you can see how the site
+behaves for both kinds of users.
 
 Run server
 ^^^^^^^^^^

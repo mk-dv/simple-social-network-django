@@ -4,13 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==2.2.7"
+django = "~=2.2"
 dynaconf = "*"
 pillow = "*"
+requests = "*"
 social-auth-app-django = "*"
 
 [dev-packages]
+coverage = "*"
 django-extensions = "*"
+flake8-commas = "*"
 flake8-django = "*"
 pylint-django = "*"
 pytest = "*"

@@ -8,7 +8,8 @@ from .models import Profile
 
 @login_required
 def edit(request):
-    """Save profile changes.
+    """
+    Save profile changes.
 
     Args:
         request (HttpRequest):
@@ -49,7 +50,8 @@ def dashboard(request):
 
 
 def register(request):
-    """Register new user.
+    """
+    Register new user.
 
     Args:
         request (HttpRequest):

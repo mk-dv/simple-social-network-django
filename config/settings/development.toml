@@ -6,7 +6,7 @@
 DEBUG = true
 
 # https://docs.djangoproject.com/en/2.2/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['development.com', 'localhost', '0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['321c11a717c7.ngrok.io', 'localhost', '0.0.0.0', '127.0.0.1']
 
 
 # Applications
@@ -43,3 +43,10 @@ MEDIA_ROOT = '@format {this.BASE_DIR}/media'
 
 # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-EMAIL_BACKEND
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Thumbnails
+# -----------------------------------------------------------------------------
+
+# https://sorl-thumbnail.readthedocs.io/en/latest/reference/settings.html#thumbnail-debug
+THUMBNAIL_DEBUG = false

@@ -27,6 +27,7 @@ urlpatterns = [
     # List of auth-backends supported by `social_django`
     # https://python-social-auth.readthedocs.io/en/latest/backends/index.html#supported-backends
     path('social-auth/', include('social_django.urls', namespace='social')),
+    path('images/', include('bookmarks.apps.images.urls', namespace='images')),
 ]
 
 # Now Django development server can send media files by URL.
