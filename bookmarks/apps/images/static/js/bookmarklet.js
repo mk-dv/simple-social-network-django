@@ -21,13 +21,13 @@
     jQuery('head').append(css);
 
     // Load HTML
-    box_html = [
+    const BOX_HTML = [
         '<div id="bookmarklet"><a href="#" id="close">&times;</a>',
         '<h1>Select an image to bookmark:</h1><div class="images"></div></div>'
     ].join('');
 
     // Add all finded images from a third-party site to its `<body>`.
-    jQuery('body').append(box_html);
+    jQuery('body').append(BOX_HTML);
 
     // An event that removes the injected code. Use the selector
     // `#bookmarklet # close` to find an element with id` close` and parent
@@ -42,30 +42,31 @@
       if (jQuery(image).width() >= MIN_WIDTH
           && jQuery(image).height() >= MIN_HEIGHT)
       {
-        let image_url = jQuery(image).attr('src');
-        jQuery('#bookmarklet .images')
-            .append(`<a href="#"><img src="${image_url}"></a>`);
+        const IMAGE_URL = jQuery(image).attr('src');
+        jQuery('#bookmarklet .images').append(
+            `<a href="#"><img src="${IMAGE_URL}"></a>`
+        );
       }
     });
 
     // When an image is selected open URL with it.
     jQuery('#bookmarklet .images a').click(function(e){
-      selected_image = jQuery(this).children('img').attr('src');
+      const SELECTED_IMAGE = jQuery(this).children('img').attr('src');
 
       // Hide bookmarklet.
       jQuery('#bookmarklet').hide();
 
       // Open new window to submit the image.
-      let url = [
+      const URL = [
         SITE_URL,
         'images/create/?url=',
-        encodeURIComponent(selected_image),
+        encodeURIComponent(SELECTED_IMAGE),
         '&title=',
         encodeURIComponent(jQuery('title').text()),
         '_blank'
       ].join('');
 
-      window.open(url);
+      window.open(URL);
     });
   }
 
