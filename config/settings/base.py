@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).parents[2]
 
 # Django searches all applications for templates in turn. When redefining login
 # or logout templates, the first one that is encountered will be used,
-# therefore the application with the redefined templates must be before
+# therefore, the application with the redefined templates must be before
 # `django.contrib.admin` app.
 LOCAL_APPS = [
     'bookmarks.apps.account.apps.AccountConfig',
@@ -135,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = 'dashboard'
 
-# The URL or named URL pattern where requests are redirected for login when
+# The URL or named URL pattern where requests are redirected for log-in when
 #  using the login_required() decorator, LoginRequiredMixin, or AccessMixin.
 LOGIN_URL = 'login'
 

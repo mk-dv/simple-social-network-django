@@ -1,8 +1,3 @@
-"""
-
-
-"""
-
 from django.db import models
 from django.conf import settings
 
@@ -24,12 +19,15 @@ class Profile(models.Model):
     # To make the code independent of a specific user, use
     #  model specified in `settings.AUTH_USER_MODEL` (maybe `get_user_model ()`
     #  is somehow involved here).
-
     # Associate `Profile` with specific `User`.User-related `Profile` will be
-    # deleted when the `User` is deleted.
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                on_delete=models.CASCADE)
+    #  deleted when the `User` is deleted.
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
     date_of_birth = models.DateField(blank=True, null=True)
+
     # Requires the `Pillow`, otherwise, the `SystemCheck` will throw an
     # exception.
     photo = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)

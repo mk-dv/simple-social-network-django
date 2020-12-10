@@ -298,9 +298,9 @@ pip-selfcheck.json
 ### IPython
 #.ipython/
 
-# Databases
+### Databases
 *.sqlite3
 
-# Ignore dynaconf secret files
+### Dynaconf secret files
 .secrets.*
 !.secrets.*.example
