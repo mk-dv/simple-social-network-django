@@ -296,7 +296,7 @@ pip-selfcheck.json
 .pytest_cache/
 
 ### IPython
-#.ipython/
+.ipython/
 
 ### Databases
 *.sqlite3
