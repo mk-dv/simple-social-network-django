@@ -12,9 +12,14 @@ social-auth-app-django = "*"
 
 [dev-packages]
 coverage = "*"
-django-extensions = "*"
+django_coverage_plugin = "*"
+# Ver must be equal to Django, otherwise `py manage.py shell_plus --notebook`
+# doesn't work.
+django-extensions = "~=2.2"
 flake8-commas = "*"
 flake8-django = "*"
+ipython = "*"
+jupyter = "*"
 pylint-django = "*"
 pytest = "*"
 pylava = "*"
