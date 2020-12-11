@@ -9,6 +9,7 @@ dynaconf = "*"
 pillow = "*"
 requests = "*"
 social-auth-app-django = "*"
+sorl-thumbnail = "*"
 
 [dev-packages]
 coverage = "*"
