@@ -19,7 +19,11 @@ from pathlib import Path
 import dynaconf
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).parents[2]
+# BASE_DIR = Path(Path(__file__).parents[2])
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+
+# Applications path, easy for shortening paths.
+APPS_DIR = BASE_DIR / 'bookmarks' / 'apps'
 
 # APPLICATION DEFINITION
 # -----------------------------------------------------------------------------
@@ -179,10 +183,10 @@ MEDIA_URL = '/media/'
 settings = dynaconf.DjangoDynaconf(
     __name__,
     ENVVAR_PREFIX_FOR_DYNACONF='BOOKMARKS',
-    CORE_LOADERS=['TOML', 'PY'],
+    CORE_LOADERS=['TOML', 'YAML'],
     ENV_SWITCHER_FOR_DYNACONF='BOOKMARKS_ENV',
     # Load this files in the order.
-    SECRETS=['.secrets.toml'],
+    SECRETS=['.secrets.yaml'],
     settings_files=['development.toml', 'production.toml'],
 )  # noqa
 # HERE ENDS DYNACONF EXTENSION LOAD (No more code below this line)
