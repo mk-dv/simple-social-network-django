@@ -6,7 +6,7 @@ from django.utils.text import slugify
 
 class Image(models.Model):
     """
-    An image is added by an user.
+    An image is added by user.
 
     Attributes:
         image (ImageField):
@@ -27,8 +27,6 @@ class Image(models.Model):
             The date the image was created.
     """
 
-    image = models.ImageField(upload_to='images/%Y/%m/%d/')
-
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='images_created',
@@ -40,6 +38,8 @@ class Image(models.Model):
         related_name='images_liked',
         blank=True
     )
+
+    image = models.ImageField(upload_to='images/%Y/%m/%d/')
 
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
