@@ -1,5 +1,8 @@
-from django.db import models
 from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.db import models
+
+from .services import get_random_default_profile_photo
 
 
 # It seems quite logical to me to separate the optional profile information
@@ -30,7 +33,12 @@ class Profile(models.Model):
 
     # Requires the `Pillow`, otherwise, the `SystemCheck` will throw an
     # exception.
-    photo = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)
+    photo = models.ImageField(
+        upload_to='media/users/%Y/%m/%d',
+        default=get_random_default_profile_photo,
+        blank=True,
+        storage=FileSystemStorage(location=str(settings.BASE_DIR), base_url='/'),
+    )
 
     def __str__(self):
         return f'Profile for user {self.user.username}'
