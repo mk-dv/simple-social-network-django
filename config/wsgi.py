@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.base')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 # Set settings by dynaconf environment switcher.
 os.environ.setdefault('BOOKMARKS_ENV', 'production')
 

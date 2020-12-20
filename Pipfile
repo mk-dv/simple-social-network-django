@@ -25,6 +25,7 @@ pylint-django = "*"
 pytest = "*"
 pylava = "*"
 pylint-runner = "*"
+yamllint = "*"
 
 [requires]
 python_version = "3.8"

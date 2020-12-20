@@ -6,7 +6,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.base')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
     try:
         from django.core.management import execute_from_command_line  # noqa
     except ImportError as exc:
@@ -21,8 +21,8 @@ def main():
 
     # This allows easy placement of apps within the interior
     # `bookmarks` directory.
-    current_path = Path(__file__).parent.resolve()
-    sys.path.append(str(current_path / 'bookmarks' / 'apps'))
+    current_dir = Path(__file__).parent.resolve()
+    sys.path.append(str(current_dir / 'bookmarks' / 'apps'))
 
     execute_from_command_line(sys.argv)
 
