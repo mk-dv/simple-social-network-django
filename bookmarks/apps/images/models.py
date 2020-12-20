@@ -35,6 +35,7 @@ class Image(models.Model):
 
     users_liked = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
+        through='Like',
         related_name='images_liked',
         blank=True
     )
@@ -57,3 +58,27 @@ class Image(models.Model):
 
     def get_absolute_url(self):
         return reverse('images:detail', args=(self.id, self.slug))
+
+    def last_liked(self):
+        return self.users_liked.order_by('like__liked_at')
+
+
+class Like(models.Model):
+    """
+    Likes images ordered by time.
+
+    Attributes:
+        image (ForeignKey[Image]):
+            Liked image.
+        user (ForeignKey[User]):
+            User liked an image.
+        liked_at (DateTimeField):
+            Like time.
+    """
+
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    liked_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('liked_at',)
