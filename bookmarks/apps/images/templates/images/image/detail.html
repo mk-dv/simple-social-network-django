@@ -4,33 +4,123 @@
 
 {% block content %}
   <h1>{{ image.title }}</h1>
-{#  <img class="image-detail"#}
-{#       src="{{ image.image.url }}"#}
-{#       alt="{{ image.title }}">#}
   {% load thumbnail %}
   {% thumbnail image.image "300" as preview %}
     <a href="{{ image.image.url }}">
-      <img class="image-detail" src="{{ preview.url }}">
+      <img class="image-detail"
+           src="{{ preview.url }}"
+           alt="{{ image.title }}">
     </a>
   {% endthumbnail %}
-  {% with total_likes=image.users_like.count %}
+  {% with total_likes=image.users_liked.count users_liked=image.last_liked %}
     <div class="image-info">
-      <div>
-        <span class="count">
-          {{ total_likes }} like{{ total_likes|pluralize }}
-        </span>
+      {# 'Like' button. #}
+      {# `href = #` go to the top of the page - even if the script doesn't #}
+      {# load - the user is not redirected. Data- * properties are used to #}
+      {# store data in tags, here they are using to send data via AJAX. #}
+      {% if request.user not in users_liked %}
+        <div id="image-likes">
+        <a id="like"
+           class="white-heart"
+           href="#"
+           data-image-id="{{ image.id }}"
+           data-action="like">
+      {% else %}
+        <div id="image-likes" class="liked">
+        <a id="like"
+           class="red-heart"
+           href="#"
+           data-image-id="{{ image.id }}"
+           data-action="unlike">
+      {% endif %}
+      </a>
+      <span id="like-counter">{{ total_likes }}</span>
+      <span id="like-counter-text">like{{ total_likes|pluralize }}</span>
       </div>
       {{ image.description|linebreaks }}
     </div>
-    <div class="image-likes">
-      {% for user in image.users_like.all %}
-        <div>
-          <img src="{{ user.profile.photo.url }}">
-          <p>{{ user.first_name }}</p>
-        </div>
-      {% empty %}
-        Nobody likes this image yet.
-      {% endfor %}
+    {# Users who liked this image. #}
+    <div class="users-liked">
+      {% with last_liked_users=users_liked|slice:"[:5]" %}
+        {% for user in last_liked_users %}
+          {% if user.profile.photo %}
+            <div data-user-id="{{ user.id }}">
+              <img src="{{ user.profile.photo.url }}">
+              <p>{{ user.first_name }}</p>
+            </div>
+          {% endif %}
+        {% empty %}
+          Nobody likes this image yet.
+        {% endfor %}
+      {% endwith %}
     </div>
   {% endwith %}
+{% endblock %}
+{% block imports %}
+  <script src="https://cdn.jsdelivr.net/npm/pluralize@8.0.0/pluralize.min.js">
+  </script>
+{% endblock %}
+{% block domready %}
+  {# Stupidly copied from a book. #}
+  let likes_panel = $('#image-likes');
+  let like_button = $('a#like');
+  {# All elements like `<div class="users-liked...">` #}
+  let users_liked = $('div.users-liked');
+
+  {# Link clicking action. #}
+  like_button.click(function(e) {
+      {# Prevent default behavior - by click user isn't redirected to #}
+      {# 'href'. `e` - event.#}
+      e.preventDefault();
+      {# async POST #}
+      $.post(
+        {# Specify URL request. #}
+        '{% url "images:like" %}',
+        {# Create a POST-request using data from `data- *` attributes. #}
+        {'image-id': $(this).data('image-id'), 'action': $(this).data('action')},
+        {# Received data handler. This function called when a request is a success(20X response status? #}
+        {# It gets `data` - request content. #}
+        function(data) {
+          if (data['status'] == 'ok') {
+            const PREV_ACTION = like_button.data('action');
+            let CURR_LIKES;
+            let like_counter = $('#like-counter');
+            const PREV_LIKES = parseInt(like_counter.text());
+            // Change `action` and `text` of the button.
+            if (PREV_ACTION == 'like') {
+                like_button.data('action', 'unlike');
+                CURR_LIKES = PREV_LIKES + 1;
+                // Add user to users liked.
+                users_liked.append([
+                  '<div data-user-id="{{ user.id }}">',
+                  '<img src="{{ user.profile.photo.url }}">',
+                  '<p>{{ user.first_name }}</p>',
+                  '</div>'
+                ].join('')
+                );
+                like_button.attr('class', 'red-heart');
+                likes_panel.addClass('liked');
+            } else {
+                like_button.data('action', 'like');
+                CURR_LIKES = PREV_LIKES - 1;
+                $('div[data-user-id="{{ user.id }}"]').remove();
+                like_button.attr('class', 'white-heart');
+                likes_panel.removeClass('liked');
+            }
+
+            {# Update the total number of likes. #}
+            like_counter.text(CURR_LIKES);
+
+            // Pluralize. Examples:
+            //  if CURR_LIKES == 1 -> '1 like'
+            //  if CURR_LIKES == 2 -> '2 likes'
+            $('#like-counter-text').text(
+              pluralize('like', CURR_LIKES, false)
+            );
+          } else if (data['status'] == 'ImageDoesNotExist') {
+              console.log('ImageDoesNotExist');
+          }
+        }
+      )
+  });
 {% endblock %}

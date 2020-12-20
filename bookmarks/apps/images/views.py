@@ -1,6 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Model
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
 from .forms import ImageCreateForm
 from .models import Image
@@ -36,6 +39,7 @@ def image_create(request):
 
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
+
     return render(
         request,
         'images/image/detail.html',
@@ -44,3 +48,38 @@ def image_detail(request, id, slug):
             'image': image,
         }
     )
+
+
+@login_required
+# Returns `HttpResponseNotAllowed`(status code 405) if method isn't POST.
+@require_POST
+def image_like(request):
+    """
+    Args:
+        request(HttpRequest):
+            An `HttpRequest` contains `image-id`(int) and `action`(str)
+             - 'like' or 'unlike'.
+
+    Returns:
+        JsonResponse:
+
+    Raises:
+        `Model.DoesNotExist` from `django.db.models`.
+    """
+    image_id = request.POST.get('image-id')
+    action = request.POST.get('action')
+    if image_id and action:
+        try:
+            image = Image.objects.get(id=image_id)
+            if action == 'like':
+                # It's obvious <QuerySet> excludes duplicates.
+                image.users_liked.add(request.user)
+            else:
+                # When an attempt to delete a user who is not in liked users,
+                # an exception is not thrown.
+                image.users_liked.remove(request.user)
+            return JsonResponse({'status': 'ok'})
+        except Model.DoesNotExist:
+            return JsonResponse({'status': 'ImageDoesNotExist'})
+
+    return JsonResponse({'status': 'ok'})
