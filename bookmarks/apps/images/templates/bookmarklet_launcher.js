@@ -6,7 +6,7 @@
 
 (function(){
     const BOOKMARKLET_URL = [
-        'https://321c11a717c7.ngrok.io/static/js/bookmarklet.js?r=',
+        'https://18ecb7a0c0e6.ngrok.io/static/images/js/bookmarklet.js?r=',
         `${new Date().getTime()}`
     ].join('');
     document.body.appendChild(document.createElement('script')

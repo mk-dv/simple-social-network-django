@@ -4,7 +4,7 @@
 <html lang="en-US">
   <head>
     <title>{% block title %}{% endblock %}</title>
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link href="{% static "account/css/base.css" %}" rel="stylesheet">
   </head>
   <body>
     <div id="header">
@@ -47,5 +47,42 @@
     <div id="content">
       {% block content %}{% endblock %}
     </div>
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+  </script>
+    {# Load plugin for easy cookie serving. #}
+    {# Details: https://github.com/js-cookie/js-cookie #}
+  <script
+    src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js">
+  </script>
+  {% block imports %}{% endblock %}
+  <script>
+    {# Apparently, the `js-cookie` plugin creates a `Cookies` variable it #}
+    {# allows access to cookies. #}
+    let csrftoken = Cookies.get('csrftoken');
+    {# It checks csrf-token for the current method if necessary (add it for #}
+    {# POST and PUT). #}
+    function csrfSafeMethod(method) {
+      {# A token isn't added to headers for these methods. #}
+      {# It is correct regular expression syntax. #}
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    {#`$` is the main jQuery obj, `ajaxSetup` configures ajax requests #}
+    {# , before sending it checks whether is need to add a csrf token to the #}
+    {# `request`. #}
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
+    });
+    {# A jQuery function that takes code as an argument to execute after the #}
+    {# DOM has been built - it is ensuring that all DOM elements are #}
+    {# available when code is executed. #}
+    $(document).ready(function() {
+      {% block domready %}{% endblock %}
+    })
+  </script>
   </body>
 </html>

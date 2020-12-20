@@ -1,8 +1,7 @@
-// Stupidly copied from a book and seems very dirty to me.
 (function(){
   const JQUERY_VERSION = '3.5.1';
-  const SITE_URL = 'https://321c11a717c7.ngrok.io/';
-  const STATIC_URL = `${SITE_URL}static/`;
+  const SITE_URL = 'https://18ecb7a0c0e6.ngrok.io/';
+  const STATIC_URL = `${SITE_URL}static/images/`;
   // Minimal image size for add to bookmarklet.
   const MIN_WIDTH = 100;
   const MIN_HEIGHT = 100;

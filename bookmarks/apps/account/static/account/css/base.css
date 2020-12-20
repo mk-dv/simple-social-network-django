@@ -264,18 +264,21 @@ ul.messages li a.close {
   overflow: auto;
 }
 
-.count {
-  color: #aaa;
-  border: 3px solid #bbb;
-  border-radius: 26px;
-  padding: 10px 20px;
-  margin: 20px 10px 0;
+.like,
+a.follow {
+  color: #333;
 }
 
-a.like,
-a.follow {
-  float: right;
-  margin-top: -8px;
+.red-heart::before {
+  content: '\2764 \fe0f';
+}
+
+.white-heart::before {
+  content: '\1F90D';
+}
+
+.liked {
+  color: #E81224;
 }
 
 #image-list {
@@ -304,14 +307,14 @@ a.follow {
   color: #333;
 }
 
-.image-likes div {
+.users-liked div {
   float: left;
   width: auto;
   padding: 10px;
   text-align: center;
 }
 
-.image-likes img {
+.users-liked img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
