@@ -1,0 +1,65 @@
+development:
+  # General
+  # ---------------------------------------------------------------------------
+
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#debug
+  DEBUG: true
+
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#allowed-hosts
+  ALLOWED_HOSTS:
+    - '60aff999030a.ngrok.io'
+    - 'localhost'
+    - '0.0.0.0'
+    - '127.0.0.1'
+
+
+  # Applications
+  # ---------------------------------------------------------------------------
+
+  # https://django-extensions.readthedocs.io/en/latest/
+  # dynaconf_merge: true
+  INSTALLED_APPS:
+    - dynaconf_merge_unique
+    - django_extensions
+
+
+
+  # Databases
+  # ---------------------------------------------------------------------------
+
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+  DATABASES:
+    default:
+      ENGINE: 'django.db.backends.sqlite3'
+      NAME: '@path {this.BASE_DIR}/db.sqlite3'
+
+
+  # Static files (CSS, JavaScript, Images)
+  # ---------------------------------------------------------------------------
+  # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#static-url
+  STATIC_URL: '/static/'
+
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#static-root
+  STATIC_ROOT: 'staticfiles/'
+
+  # Media files
+  # ---------------------------------------------------------------------------
+
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#media-root
+  MEDIA_ROOT: '@path {this.BASE_DIR}/media'
+
+
+  # Email
+  # ---------------------------------------------------------------------------
+
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-EMAIL_BACKEND
+  EMAIL_BACKEND: 'django.core.mail.backends.console.EmailBackend'
+
+
+  # Thumbnails
+  # ---------------------------------------------------------------------------
+
+  # https://sorl-thumbnail.readthedocs.io/en/latest/reference/settings.html#thumbnail-debug
+  THUMBNAIL_DEBUG: false

@@ -1,11 +1,10 @@
-from pathlib import Path
 import random
 
 from django.conf import settings
 
 
 def get_random_default_profile_photo():
-    app_dir = Path(settings.APPS_DIR) / 'account'
+    app_dir = settings.APPS_DIR / 'account'
     default_photos_dir = (
          app_dir / 'static' / 'account' / 'images' / 'default_profile_photos'
     )
