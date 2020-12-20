@@ -36,3 +36,4 @@ if settings.DEBUG:
     # Used for local development only. Never use Django as a static or media
     # file provider.
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
