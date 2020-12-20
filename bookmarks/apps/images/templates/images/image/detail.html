@@ -50,7 +50,7 @@
             </div>
           {% endif %}
         {% empty %}
-          Nobody likes this image yet.
+          <p id="nobody-likes">Nobody likes this image yet.</p>
         {% endfor %}
       {% endwith %}
     </div>
@@ -117,6 +117,15 @@
             $('#like-counter-text').text(
               pluralize('like', CURR_LIKES, false)
             );
+
+            if ($('p#nobody-likes').length && CURR_LIKES === 1) {
+              console.log('remove');
+              $('p[id="nobody-likes"]').remove();
+            } else if (PREV_LIKES === 1 && CURR_LIKES === 0) {
+              users_liked.append(
+                  '<p id="nobody-likes">Nobody likes this image yet.</p>'
+              );
+            }
           } else if (data['status'] == 'ImageDoesNotExist') {
               console.log('ImageDoesNotExist');
           }
