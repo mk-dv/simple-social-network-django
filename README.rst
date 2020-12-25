@@ -17,16 +17,16 @@ Simple Social Network Django
    :target: https://github.com/Naereen/StrapDown.js/blob/master/LICENSE
 
 .. image:: https://travis-ci.org/mk-dv/simple-social-network-django.svg?branch=release-0.1
-    :target: https://travis-ci.org/mk-dv/simple-social-network-django
+   :target: https://travis-ci.org/mk-dv/simple-social-network-django
 
 .. image:: https://codecov.io/gh/mk-dv/simple-social-network-django/branch/release-0.1/graph/badge.svg?token=AAJNX6IT5R
-    :target: https://codecov.io/gh/mk-dv/simple-social-network-django
-
-.. image:: https://img.shields.io/github/pipenv/locked/dependency-version/mk-dv/simple-social-network-django/django
-    :alt: GitHub Pipenv locked dependency version
+   :target: https://codecov.io/gh/mk-dv/simple-social-network-django
 
 .. image:: https://img.shields.io/github/last-commit/mk-dv/simple-social-network-django
     :alt: GitHub last commit
+    
+.. image:: https://img.shields.io/github/pipenv/locked/dependency-version/mk-dv/simple-social-network-django/django
+
 
 .. image:: https://img.shields.io/docker/build/mk-dv/simple-social-network-django
    :alt: Docker Build Status
