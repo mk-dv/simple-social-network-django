@@ -23,10 +23,11 @@ Simple Social Network Django
    :target: https://codecov.io/gh/mk-dv/simple-social-network-django
 
 .. image:: https://img.shields.io/docker/build/mk-dv/simple-social-network-django
-   :target: https://codecov.io/gh/mk-dv/simple-social-network-django
-
-.. image:: https://img.shields.io/docker/build/mk-dv/simple-social-network-django
+   :target: https://www.docker.com/get-started
    :alt: Docker Build Status
+
+
+   
    
 
 An example of a social network written on Django.
