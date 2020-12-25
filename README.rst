@@ -24,12 +24,9 @@ Simple Social Network Django
 
 .. image:: https://img.shields.io/github/last-commit/mk-dv/simple-social-network-django
     :alt: GitHub last commit
-    
-.. image:: https://img.shields.io/github/pipenv/locked/dependency-version/mk-dv/simple-social-network-django/django
-
-
 .. image:: https://img.shields.io/docker/build/mk-dv/simple-social-network-django
    :alt: Docker Build Status
+   
 
 An example of a social network written on Django.
 -------------------------------------------------
