@@ -3,14 +3,18 @@ python:
   - 3.6
   - 3.7
   - 3.8
+
+dist: xenial
+
 before_install:
-  - python --version
   - pip install -U pipenv
-  - pipenv install
-  - pipenv install codecov
+  - pipenv install --skip-lock
+  - pipenv install codecov pytest pytest-cov --skip-lock
 #install:
 #  - pip install ".[test]" . # install package + test dependencies
-script: pytest # run tests
+script:
+  # run tests
+  - pytest --disable-pytest-warnings --cov-report term --cov=./ account/tests/
+
 after_success:
   - codecov # submit coverage
-

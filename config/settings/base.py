@@ -78,6 +78,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': True,
         },
     },
 ]
@@ -160,6 +161,6 @@ settings = dynaconf.DjangoDynaconf(
     ENV_SWITCHER_FOR_DYNACONF='BOOKMARKS_ENV',
     # Load this files in the order.
     SECRETS=['.secrets.toml'],
-    settings_files=['development.toml', 'production.toml'],
+    settings_files=['development.toml', 'production.toml', 'testing.toml'],
 )  # noqa
 # HERE ENDS DYNACONF EXTENSION LOAD (No more code below this line)

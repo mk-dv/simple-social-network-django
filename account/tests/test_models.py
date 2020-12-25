@@ -1,5 +1,5 @@
 import os
-import PIL
+from PIL import Image
 
 from django.contrib.auth import get_user_model
 # from tempfile import NamedTemporaryFile
@@ -31,7 +31,7 @@ class ProfileModelTest(TestCase):
         # TODO(mk-dv): Заполнить профиль.
 
         # Создание изображения
-        image = PIL.Image.new('RGB',(100,100),color=(73,22,30))
+        image = Image.new('RGB',(100,100),color=(73,22,30))
         # image_file = NamedTemporaryFile(suffix='.jpg')
         # image.save(image_file)
         import io
