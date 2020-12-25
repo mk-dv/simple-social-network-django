@@ -17,12 +17,14 @@ Simple Social Network Django
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
     :target: https://github.com/pydanny/cookiecutter-django/
     :alt: Built with Cookiecutter Django
-
+    
+.. image:: https://img.shields.io/github/last-commit/mk-dv/simple-social-network-django
+    :alt: GitHub last commit
+    
 .. image:: https://img.shields.io/github/pipenv/locked/dependency-version/mk-dv/simple-social-network-django/django/dev?label=Django
     :alt: GitHub Pipenv locked dependency version (branch)
 
-.. image:: https://img.shields.io/github/last-commit/mk-dv/simple-social-network-django
-    :alt: GitHub last commit
+
 
 .. image:: https://img.shields.io/docker/build/mk-dv/simple-social-network-django
    :alt: Docker Build Status
