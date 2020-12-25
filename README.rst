@@ -22,8 +22,9 @@ Simple Social Network Django
 .. image:: https://codecov.io/gh/mk-dv/simple-social-network-django/branch/release-0.1/graph/badge.svg?token=AAJNX6IT5R
    :target: https://codecov.io/gh/mk-dv/simple-social-network-django
 
-.. image:: https://img.shields.io/github/last-commit/mk-dv/simple-social-network-django
-    :alt: GitHub last commit
+.. image:: https://codecov.io/gh/mk-dv/simple-social-network-django/branch/release-0.1/graph/badge.svg?token=AAJNX6IT5R
+   :target: https://codecov.io/gh/mk-dv/simple-social-network-django
+
 .. image:: https://img.shields.io/docker/build/mk-dv/simple-social-network-django
    :alt: Docker Build Status
    
