@@ -8,7 +8,7 @@ dist: xenial
 
 env:
   - BOOKMARKS_SECRET_KEY=@juyd*gto_@!uy%_z%q9=lj9l8g^w5aq-*jb#l_la9g_b3eu*g
-
+  - BOOKMARKS_ENV=testing
 before_install:
   - pip install -U pipenv
   - pipenv install --skip-lock
