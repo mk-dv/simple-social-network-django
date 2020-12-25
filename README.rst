@@ -10,16 +10,13 @@ Simple Social Network Django
 .. image:: https://codecov.io/gh/mk-dv/simple-social-network-django/branch/release-0.1/graph/badge.svg?token=AAJNX6IT5R
     :target: https://codecov.io/gh/mk-dv/simple-social-network-django
 
-.. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
-     :target: https://github.com/pydanny/cookiecutter-django/
-     :alt: Built with Cookiecutter Django
-
 .. image:: https://api.codeclimate.com/v1/badges/4c21f9716b5b39187a8a/maintainability
    :target: https://codeclimate.com/github/mk-dv/simple-social-network-django/maintainability
    :alt: Maintainability
 
-.. image:: https://img.shields.io/github/license/Naereen/StrapDown.js.svg
-   :target: https://github.com/Naereen/StrapDown.js/blob/master/LICENSE
+.. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
+     :target: https://github.com/pydanny/cookiecutter-django/
+     :alt: Built with Cookiecutter Django
 
 .. image:: https://img.shields.io/github/pipenv/locked/dependency-version/mk-dv/simple-social-network-django/django/dev?label=Django
     :alt: GitHub Pipenv locked dependency version (branch)
@@ -29,6 +26,9 @@ Simple Social Network Django
 
 .. image:: https://img.shields.io/docker/build/mk-dv/simple-social-network-django
    :alt: Docker Build Status
+
+.. image:: https://img.shields.io/github/license/Naereen/StrapDown.js.svg
+   :target: https://github.com/Naereen/StrapDown.js/blob/master/LICENSE
 
 An example of a social network written on Django.
 -------------------------------------------------
