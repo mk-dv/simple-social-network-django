@@ -26,6 +26,9 @@ Simple Social Network Django
    :target: https://www.docker.com/get-started
    :alt: Docker Build Status
 
+.. image:: https://img.shields.io/github/last-commit/mk-dv/simple-social-network-django
+   :target:
+   :alt: GitHub last commit
 
    
    
