@@ -71,15 +71,19 @@ def image_like(request):
     if image_id and action:
         try:
             image = Image.objects.get(id=image_id)
-            if action == 'like':
-                # It's obvious <QuerySet> excludes duplicates.
-                image.users_liked.add(request.user)
-            else:
-                # When an attempt to delete a user who is not in liked users,
-                # an exception is not thrown.
-                image.users_liked.remove(request.user)
-            return JsonResponse({'status': 'ok'})
         except Model.DoesNotExist:
             return JsonResponse({'status': 'ImageDoesNotExist'})
+
+        if action == 'like':
+            # It's obvious <QuerySet> excludes duplicates.
+            image.users_liked.add(request.user)
+        elif action == 'unlike':
+            # When an attempt to delete a user who is not in liked users,
+            # an exception is not thrown.
+            image.users_liked.remove(request.user)
+
+        return JsonResponse({'status': 'ok'})
+
+    return JsonResponse({'status': 'Bad request'})
 
     return JsonResponse({'status': 'ok'})
