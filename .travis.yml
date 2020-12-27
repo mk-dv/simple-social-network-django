@@ -9,9 +9,7 @@ env:
     BOOKMARKS_ENV=testing
 
 before_install:
-  - pip install -U pipenv
-  - pipenv install --skip-lock
-  - pipenv install codecov pytest pytest-cov --skip-lock
+  - pip install -r test-requirements.txt
 #install:
 #  - pip install ".[test]" . # install package + test dependencies
 script:
