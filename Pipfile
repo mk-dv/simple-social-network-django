@@ -5,7 +5,8 @@ name = "pypi"
 
 [packages]
 django = "~=2.2"
-dynaconf = "*"
+dynaconf = "3.1.2"
+jinja2 = "*"
 pillow = "*"
 requests = "*"
 social-auth-app-django = "*"
