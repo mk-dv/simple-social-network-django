@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.db import models
 
-from .services import get_random_default_profile_photo
+from .services.utils import get_random_default_profile_photo
 
 
 # It seems quite logical to me to separate the optional profile information
