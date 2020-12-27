@@ -75,7 +75,7 @@ default:
 
   TEMPLATES:
     - BACKEND: 'django.template.backends.django.DjangoTemplates'
-      DIRS: []
+      DIRS: ['@path {{this.BASE_DIR}}/bookmarks/templates']
       APP_DIRS: true
       OPTIONS:
         context_processors:
