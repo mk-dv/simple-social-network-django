@@ -29,7 +29,7 @@ class UserRegistrationForm(forms.ModelForm):
     # A `<Form>.clean` method validates the entire form - it is used to
     # validate related fields.
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(
+    password_confirm = forms.CharField(
         label='Repeat password',
         widget=forms.PasswordInput
     )
@@ -44,8 +44,8 @@ class UserRegistrationForm(forms.ModelForm):
     # You can add `clean_ <field_name>` methods for any field, for automatic
     # check, if error occurred - check is bound to this field. Is used to check
     # related fields.
-    def clean_password2(self):
+    def clean_password_confirm(self):
         cd = self.cleaned_data
-        if cd['password'] != cd['password2']:
+        if cd['password'] != cd['password_confirm']:
             raise forms.ValidationError("Passwords don't match.")
-        return cd['password2']
+        return cd['password_confirm']
