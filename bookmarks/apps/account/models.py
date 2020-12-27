@@ -10,13 +10,19 @@ from .services.utils import get_random_default_profile_photo
 # `User` model contains any extra data).
 class Profile(models.Model):
     """
-    <Descriptions>
-
-    Attributes:
+    User profile.
 
     The Django user model(`User` from `django.contrib.auth.models`) contains a
      minimal set of fields. To save additional data, possible to create a
      profile model and link them using `OneToOneField`.
+
+    Attributes:
+        user (OneToOneField):
+            User model.
+        date_of_birth (DateField):
+            Date of birth user.
+        photo (ImageField):
+            User avatar.
     """
 
     # To make the code independent of a specific user, use
