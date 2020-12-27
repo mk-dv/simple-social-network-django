@@ -7,6 +7,15 @@
         }
     },
     "rules": {
-        "semi": "error"
+        "semi": "error",
+        "prefer-arrow-callback": [
+          "error",
+          { "allowNamedFunctions": true }
+        ],
+        "func-style": [
+          "error",
+          "expression",
+          { "allowArrowFunctions": true }
+        ]
     }
 }
