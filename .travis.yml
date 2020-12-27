@@ -18,7 +18,7 @@ before_install:
 #  - pip install ".[test]" . # install package + test dependencies
 script:
   # run tests
-  - pytest --disable-pytest-warnings --cov-report term --cov=./ account/tests/
+  - pytest --cov-report term --cov=./ account/tests/
 
 after_success:
   - codecov # submit coverage
