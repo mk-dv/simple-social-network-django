@@ -165,3 +165,11 @@ default:
   # files. Read more at
   # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-MEDIA_URL
   MEDIA_URL: '/media/'
+
+
+  # LOCAL APPS
+  # ---------------------------------------------------------------------------
+
+  # bookmarks.apps.images
+
+  IMAGES_ON_PAGE: 24

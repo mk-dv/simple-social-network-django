@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Images bookmarked{% endblock %}
+
+{% block content %}
+  <h1>Images bookmarked</h1>
+  <div id="image-list">
+    {% include "images/image/list_ajax.html" %}
+  </div>
+{% endblock %}
+
+{% block domready %}
+  // The difference between the height of the whole page and the height of the
+  // viewable area is a number of pixels to the end of the page, loading starts
+  // 200px before.
+  const MAX_HIGHT_FROM_BOTTOM_TO_LOAD = 200;
+  let page = 1;
+  // Whether the last page received is blank. It allows to stops further
+  // requests when an empty response is received.
+  let empty_page = false;
+  // It's used for blocking requests if another request is sent.
+  let block_request = false;
+  // It's called when page scrolling.
+  $(window).scroll(function() {
+    let margin = $(document).height() - $(window).height() -
+      MAX_HIGHT_FROM_BOTTOM_TO_LOAD;
+
+    // If scrolled to (bottom - MAX_HIGHT_FROM_BOTTOM_TO_LOAD) pixels, the last
+    // response will not be empty and does not wait for a response to the
+    // previous request.
+    if ($(window).scrollTop() > margin && empty_page == false &&
+      block_request == false) {
+      // Block other requests.
+      block_request = true;
+      ++page;
+      // Get next page.
+      $.get(`?page=${page}`, (data) => {
+        // Stop requests.
+        if(data === '') {
+          empty_page = true;
+        }
+        // Add the received data to the page.
+        else {
+          block_request = false;
+          $('#image-list').append(data);
+        }
+      });
+    }
+  });
+{% endblock %}

@@ -1,7 +1,9 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core import paginator
 from django.db.models import Model
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
@@ -88,4 +90,37 @@ def image_like(request):
 
     return JsonResponse({'status': 'Bad request'})
 
-    return JsonResponse({'status': 'ok'})
+
+@login_required
+def images_list(request):
+    page = request.GET.get('page')
+    all_images = Image.objects.all()
+    paginator_object = paginator.Paginator(all_images, settings.IMAGES_ON_PAGE)
+    # Get page using try/except.
+    try:
+        images = paginator_object.page(page)
+    except paginator.PageNotAnInteger:
+        images = paginator_object.page(1)
+    # Page doesn't exist.
+    except paginator.EmptyPage:
+        if request.is_ajax():
+            # By passing an empty string, I explicitly indicate that I'm
+            # returning an empty response, and not just forgot the arg.
+            return HttpResponse('')
+
+        images = paginator_object.page(paginator_object.num_pages)
+
+    # The main flow of execution.
+    if request.is_ajax():
+        template_name = 'images/image/list_ajax.html'
+    else:
+        template_name = 'images/image/list.html'
+
+    return render(
+        request,
+        template_name,
+        {
+            'section': 'images',
+            'images': images,
+        }
+    )
