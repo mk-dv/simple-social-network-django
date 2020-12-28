@@ -37,14 +37,17 @@
     });
 
     // Find images and display them. Use `jQuery.each` to iterate over them.
-    jQuery.each(jQuery('img[src$="jpg"]'), function(index, image) {
+    jQuery.each(jQuery('img'), (index, image) => {
       if (jQuery(image).width() >= MIN_WIDTH
           && jQuery(image).height() >= MIN_HEIGHT)
       {
         const IMAGE_URL = jQuery(image).attr('src');
-        jQuery('#bookmarklet .images').append(
-            `<a href="#"><img src="${IMAGE_URL}"></a>`
-        );
+        let regex = new RegExp("(.*)\.(jpg|jpeg|png|gif)$");
+        if (regex.test(IMAGE_URL)) {
+          jQuery('#bookmarklet .images').append(
+            `<a class="item" href="#"><img src="${IMAGE_URL}"></a>`
+          );
+        }
       }
     });
 
