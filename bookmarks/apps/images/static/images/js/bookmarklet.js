@@ -6,6 +6,8 @@
   const MIN_WIDTH = 100;
   const MIN_HEIGHT = 100;
   const JQUERY_TIMEOUT_ATTEMPTS = 250;
+  // Delay before collected images will be sorted.
+  const PREVIEWS_SORT_DELAY = 300;
 
   function bookmarklet(msg) {
     // Loading CSS styles (`bookmarklet.css`). `new Date().getTime()` returns
@@ -50,6 +52,16 @@
         }
       }
     });
+    const masonryFunc = () => {
+      let container = $('#bookmarklet .images');
+      // init
+      container.masonry({
+          columnWidth: 1,
+          // Use images selector.
+          itemSelector: '.item'
+      });
+    };
+    setTimeout(masonryFunc, PREVIEWS_SORT_DELAY);
 
     // When an image is selected open URL with it.
     jQuery('#bookmarklet .images a').click(function(e){
