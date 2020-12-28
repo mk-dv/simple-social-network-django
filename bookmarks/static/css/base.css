@@ -1,4 +1,46 @@
-@import url(http://fonts.googleapis.com/css?family=Muli);
+/* latin-ext */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/muli/v22/latin-ext.woff2) format('woff2');
+  unicode-range:
+    U+0100-024F,
+    U+0259,
+    U+1E00-1EFF,
+    U+2020,
+    U+20A0-20AB,
+    U+20AD-20CF,
+    U+2113,
+    U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/muli/v22/latin.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF,
+    U+0131,
+    U+0152-0153,
+    U+02BB-02BC,
+    U+02C6,
+    U+02DA,
+    U+02DC,
+    U+2000-206F,
+    U+2074,
+    U+20AC,
+    U+2122,
+    U+2191,
+    U+2193,
+    U+2212,
+    U+2215,
+    U+FEFF,
+    U+FFFD;
+}
 
 body {
   margin: 0;
@@ -39,8 +81,110 @@ h2 {
   margin: 30px 0 20px;
 }
 
+.social li a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  color: #fff;
+}
+
+/* messages */
+ul.messages li.info a {
+  color: #1586de;
+}
+
+ul.messages {
+  margin: 10px 100px;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.messages li.success,
+ul.messages li.warning,
+ul.messages li.error,
+ul.messages li.info {
+  margin: 0;
+  padding: 14px 20px;
+  list-style: none;
+  color: #fff;
+}
+
+ul.messages li.success {
+  background: #81ce81;
+}
+
+ul.messages li.success a {
+  color: #0ac33e;
+}
+
+ul.messages li.error a {
+  color: #e9828e;
+}
+
+ul.messages li.error {
+  background: #a30029;
+  color: #e9828e;
+}
+
+ul.messages li.info {
+  background: #faffae;
+  color: #696b4e;
+}
+
+ul.messages li.warning {
+  background: #de9404;
+}
+
+ul.messages li.warning a {
+  color: #f49000;
+}
+
+ul.messages li a.close {
+  margin: 0;
+  float: right;
+  opacity: 1;
+  border: 0;
+  box-shadow: none;
+  text-shadow: none;
+}
+
 ol {
   line-height: 1.5;
+}
+
+/* social-auth */
+.social {
+  float: right;
+}
+
+.social li {
+  list-style: none;
+  padding: 10px 20px;
+  margin: 0 0 10px 0;
+}
+
+.social li.facebook {
+  background: #3b5399;
+}
+
+.social li.twitter {
+  background: #00cffa;
+}
+
+.social li.google {
+  background: #de1710;
+}
+
+.social li.vkontakte {
+  background: #4f7194;
+}
+
+#header a {
+  color: #f3f7cc;
+}
+
+#image-list .info a {
+  color: #333;
 }
 
 #header {
@@ -60,6 +204,10 @@ ol {
   margin-right: 10%;
 }
 
+#header a:hover {
+  color: #fff;
+}
+
 #header ul.menu {
   list-style: none;
   float: left;
@@ -76,14 +224,6 @@ ol {
 #header ul.menu li.selected a:hover {
   color: #1b6d32;
   font-weight: bold;
-}
-
-#header a {
-  color: #f3f7cc;
-}
-
-#header a:hover {
-  color: #fff;
 }
 
 #header .user {
@@ -148,102 +288,8 @@ a.button {
   font-size: 13px;
 }
 
-/* messages */
-ul.messages {
-  margin: 10px 100px;
-  padding: 0;
-  list-style-type: none;
-}
-
-ul.messages li.success,
-ul.messages li.warning,
-ul.messages li.error,
-ul.messages li.info {
-  margin: 0;
-  padding: 14px 20px;
-  list-style: none;
-  color: #fff;
-}
-
-ul.messages li.success {
-  background: #81ce81;
-}
-
-ul.messages li.success a {
-  color: #0ac33e;
-}
-
-ul.messages li.error {
-  background: #a30029;
-  color: #e9828e;
-}
-
-ul.messages li.error a {
-  color: #e9828e;
-}
-
-ul.messages li.info {
-  background: #faffae;
-  color: #696b4e;
-}
-
-ul.messages li.info a {
-  color: #1586de;
-}
-
-ul.messages li.warning {
-  background: #de9404;
-}
-
-ul.messages li.warning a {
-  color: #f49000;
-}
-
-ul.messages li a.close {
-  margin: 0;
-  float: right;
-  opacity: 1;
-  border: 0;
-  box-shadow: none;
-  text-shadow: none;
-}
-
 .login-form {
   float: left;
-}
-
-/* social-auth */
-.social {
-  float: right;
-}
-
-.social li {
-  list-style: none;
-  padding: 10px 20px;
-  margin: 0 0 10px 0;
-}
-
-.social li a {
-  width: 100%;
-  height: 100%;
-  display: block;
-  color: #fff;
-}
-
-.social li.facebook {
-  background: #3b5399;
-}
-
-.social li.twitter {
-  background: #00cffa;
-}
-
-.social li.google {
-  background: #de1710;
-}
-
-.social li.vkontakte {
-  background: #4f7194;
 }
 
 /* images */
@@ -278,11 +324,20 @@ a.follow {
 }
 
 .liked {
-  color: #E81224;
+  color: #e81224;
 }
 
-#image-list {
-  overflow: auto;
+.users-liked div {
+  float: left;
+  width: auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.users-liked img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
 }
 
 #image-list .image {
@@ -301,23 +356,6 @@ a.follow {
 
 #image-list .info {
   padding: 10px;
-}
-
-#image-list .info a {
-  color: #333;
-}
-
-.users-liked div {
-  float: left;
-  width: auto;
-  padding: 10px;
-  text-align: center;
-}
-
-.users-liked img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
 }
 
 /* users */

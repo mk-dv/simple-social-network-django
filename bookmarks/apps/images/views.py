@@ -7,6 +7,7 @@ from django.views.decorators.http import require_POST
 
 from .forms import ImageCreateForm
 from .models import Image
+from bookmarks.services.decorators import ajax_required
 
 
 @login_required
@@ -50,6 +51,7 @@ def image_detail(request, id, slug):
     )
 
 
+@ajax_required
 @login_required
 # Returns `HttpResponseNotAllowed`(status code 405) if method isn't POST.
 @require_POST
@@ -71,15 +73,19 @@ def image_like(request):
     if image_id and action:
         try:
             image = Image.objects.get(id=image_id)
-            if action == 'like':
-                # It's obvious <QuerySet> excludes duplicates.
-                image.users_liked.add(request.user)
-            else:
-                # When an attempt to delete a user who is not in liked users,
-                # an exception is not thrown.
-                image.users_liked.remove(request.user)
-            return JsonResponse({'status': 'ok'})
         except Model.DoesNotExist:
             return JsonResponse({'status': 'ImageDoesNotExist'})
+
+        if action == 'like':
+            # It's obvious <QuerySet> excludes duplicates.
+            image.users_liked.add(request.user)
+        elif action == 'unlike':
+            # When an attempt to delete a user who is not in liked users,
+            # an exception is not thrown.
+            image.users_liked.remove(request.user)
+
+        return JsonResponse({'status': 'ok'})
+
+    return JsonResponse({'status': 'Bad request'})
 
     return JsonResponse({'status': 'ok'})

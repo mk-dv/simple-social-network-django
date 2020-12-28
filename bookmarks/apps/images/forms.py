@@ -38,7 +38,7 @@ class ImageCreateForm(forms.ModelForm):
         """
 
         url = self.cleaned_data['url']
-        valid_suffixes = ('.jpg', '.jpeg')
+        valid_suffixes = ('.jpg', '.jpeg', '.png', '.gif')
         # Extension with leading dot.
         image_suffix = Path(url).suffix
 

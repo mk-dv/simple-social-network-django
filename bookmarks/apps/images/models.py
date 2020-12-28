@@ -44,7 +44,7 @@ class Image(models.Model):
 
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    url = models.URLField()
+    url = models.URLField(max_length=2048)
     slug = models.SlugField(max_length=200, blank=True)
     created = models.DateField(auto_now_add=True, db_index=True)
 

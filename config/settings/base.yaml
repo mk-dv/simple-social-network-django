@@ -45,18 +45,18 @@ default:
     # https://sorl-thumbnail.readthedocs.io/en/latest/
     - 'sorl.thumbnail'
 
-  #############################################################################
-  INSTALLED_APPS: []
-  __merge_apps_lists: |
-    @jinja {{ this.INSTALLED_APPS.extend(this.LOCAL_APPS) }}
-    @jinja {{ this.INSTALLED_APPS.extend(this.DJANGO_APPS) }}
-    @jinja {{ this.INSTALLED_APPS.extend(this.THIRD_PARTY_APPS) }}
-  #############################################################################
+  _merge_apps_lists: |
+    @jinja {{
+      this.update({
+        'INSTALLED_APPS':
+          this.LOCAL_APPS + this.DJANGO_APPS + this.THIRD_PARTY_APPS
+      })
+    }}
 
   # MIDDLEWARE
   # ---------------------------------------------------------------------------
 
-  # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#middleware
   MIDDLEWARE:
     - 'django.middleware.security.SecurityMiddleware'
     - 'django.contrib.sessions.middleware.SessionMiddleware'
@@ -70,12 +70,12 @@ default:
   # URLS
   # ---------------------------------------------------------------------------
 
-  # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#root-urlconf
   ROOT_URLCONF: 'config.urls'
 
   TEMPLATES:
     - BACKEND: 'django.template.backends.django.DjangoTemplates'
-      DIRS: []
+      DIRS: ['@path {{this.BASE_DIR}}/bookmarks/templates']
       APP_DIRS: true
       OPTIONS:
         context_processors:
@@ -85,7 +85,7 @@ default:
           - 'django.contrib.messages.context_processors.messages'
 
 
-  # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#wsgi-application
   WSGI_APPLICATION: 'config.wsgi.application'
 
 
@@ -140,7 +140,7 @@ default:
   # INTERNATIONALIZATION
   # ---------------------------------------------------------------------------
 
-  # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
+  # https://docs.djangoproject.com/en/2.2/ref/settings/#language-code
   LANGUAGE_CODE: 'en-us'
 
   # Local time zone. Choices are

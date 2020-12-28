@@ -6,8 +6,10 @@
   const MIN_WIDTH = 100;
   const MIN_HEIGHT = 100;
   const JQUERY_TIMEOUT_ATTEMPTS = 250;
+  // Delay before collected images will be sorted.
+  const PREVIEWS_SORT_DELAY = 300;
 
-  function bookmarklet(msg) {
+  const bookmarklet = (msg) => {
     // Loading CSS styles (`bookmarklet.css`). `new Date().getTime()` returns
     // an integer to prevent caching bookmarklet by the browser for loading it
     // on change.
@@ -32,24 +34,37 @@
     // `#bookmarklet # close` to find an element with id` close` and parent
     // with id `bookmarklet`.
     // Details: https: //api.jquery.com/category/selectors
-    jQuery('#bookmarklet #close').click(function(){
+    jQuery('#bookmarklet #close').click(() => {
       jQuery('#bookmarklet').remove();
     });
 
     // Find images and display them. Use `jQuery.each` to iterate over them.
-    jQuery.each(jQuery('img[src$="jpg"]'), function(index, image) {
+    jQuery.each(jQuery('img'), (index, image) => {
       if (jQuery(image).width() >= MIN_WIDTH
           && jQuery(image).height() >= MIN_HEIGHT)
       {
         const IMAGE_URL = jQuery(image).attr('src');
-        jQuery('#bookmarklet .images').append(
-            `<a href="#"><img src="${IMAGE_URL}"></a>`
-        );
+        let regex = new RegExp("(.*)\.(jpg|jpeg|png|gif)$");
+        if (regex.test(IMAGE_URL)) {
+          jQuery('#bookmarklet .images').append(
+            `<a class="item" href="#"><img src="${IMAGE_URL}"></a>`
+          );
+        }
       }
     });
+    const masonryFunc = () => {
+      let container = $('#bookmarklet .images');
+      // init
+      container.masonry({
+          columnWidth: 1,
+          // Use images selector.
+          itemSelector: '.item'
+      });
+    };
+    setTimeout(masonryFunc, PREVIEWS_SORT_DELAY);
 
     // When an image is selected open URL with it.
-    jQuery('#bookmarklet .images a').click(function(e){
+    jQuery('#bookmarklet .images a').click(function(e) {
       const SELECTED_IMAGE = jQuery(this).children('img').attr('src');
 
       // Hide bookmarklet.
@@ -67,13 +82,13 @@
 
       window.open(URL);
     });
-  }
+  };
 
   // If `JQuery` has not loaded yet - loads it. If the library is already
   // connected - run `bookmarklet()`.
 
   // Check if jQuery is loaded.
-  if(typeof window.jQuery != 'undefined') {
+  if(typeof window.jQuery !== 'undefined') {
     bookmarklet();
   } else {
     // Create the script and point to Google API.
@@ -87,9 +102,9 @@
     document.getElementsByTagName('head')[0].appendChild(script);
     // Add the ability to use multiple JQuery load attempts.
     let attempts = 15;
-    (function(){
+    (function() {
       // Check again if jQuery is undefined.
-      if(typeof window.jQuery == 'undefined') {
+      if(typeof window.jQuery === 'undefined') {
         if(--attempts > 0) {
           // Calls himself in a few milliseconds.
           // if not loaded - try again.
