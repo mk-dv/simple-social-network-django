@@ -68,7 +68,7 @@
   let users_liked = $('div.users-liked');
 
   {# Link clicking action. #}
-  like_button.click(function(e) {
+  like_button.click(function (e) {
       {# Prevent default behavior - by click user isn't redirected to #}
       {# 'href'. `e` - event.#}
       e.preventDefault();
@@ -80,14 +80,15 @@
         {'image-id': $(this).data('image-id'), 'action': $(this).data('action')},
         {# Received data handler. This function called when a request is a success(20X response status? #}
         {# It gets `data` - request content. #}
-        function(data) {
-          if (data['status'] == 'ok') {
+        {# Maybe thanks to the hoisting, I might call it anywhere. #}
+        (data) => {
+          if (data['status'] === 'ok') {
             const PREV_ACTION = like_button.data('action');
             let CURR_LIKES;
             let like_counter = $('#like-counter');
             const PREV_LIKES = parseInt(like_counter.text());
             // Change `action` and `text` of the button.
-            if (PREV_ACTION == 'like') {
+            if (PREV_ACTION === 'like') {
                 like_button.data('action', 'unlike');
                 CURR_LIKES = PREV_LIKES + 1;
                 // Add user to users liked.
@@ -112,8 +113,8 @@
             like_counter.text(CURR_LIKES);
 
             // Pluralize. Examples:
-            //  if CURR_LIKES == 1 -> '1 like'
-            //  if CURR_LIKES == 2 -> '2 likes'
+            //  if CURR_LIKES === 1 -> '1 like'
+            //  if CURR_LIKES === 2 -> '2 likes'
             $('#like-counter-text').text(
               pluralize('like', CURR_LIKES, false)
             );
@@ -126,7 +127,7 @@
                   '<p id="nobody-likes">Nobody likes this image yet.</p>'
               );
             }
-          } else if (data['status'] == 'ImageDoesNotExist') {
+          } else if (data['status'] === 'ImageDoesNotExist') {
               console.log('ImageDoesNotExist');
           }
         }

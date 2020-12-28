@@ -9,7 +9,7 @@
   // Delay before collected images will be sorted.
   const PREVIEWS_SORT_DELAY = 300;
 
-  function bookmarklet(msg) {
+  const bookmarklet = (msg) => {
     // Loading CSS styles (`bookmarklet.css`). `new Date().getTime()` returns
     // an integer to prevent caching bookmarklet by the browser for loading it
     // on change.
@@ -34,7 +34,7 @@
     // `#bookmarklet # close` to find an element with id` close` and parent
     // with id `bookmarklet`.
     // Details: https: //api.jquery.com/category/selectors
-    jQuery('#bookmarklet #close').click(function(){
+    jQuery('#bookmarklet #close').click(() => {
       jQuery('#bookmarklet').remove();
     });
 
@@ -64,7 +64,7 @@
     setTimeout(masonryFunc, PREVIEWS_SORT_DELAY);
 
     // When an image is selected open URL with it.
-    jQuery('#bookmarklet .images a').click(function(e){
+    jQuery('#bookmarklet .images a').click(function(e) {
       const SELECTED_IMAGE = jQuery(this).children('img').attr('src');
 
       // Hide bookmarklet.
@@ -82,13 +82,13 @@
 
       window.open(URL);
     });
-  }
+  };
 
   // If `JQuery` has not loaded yet - loads it. If the library is already
   // connected - run `bookmarklet()`.
 
   // Check if jQuery is loaded.
-  if(typeof window.jQuery != 'undefined') {
+  if(typeof window.jQuery !== 'undefined') {
     bookmarklet();
   } else {
     // Create the script and point to Google API.
@@ -102,9 +102,9 @@
     document.getElementsByTagName('head')[0].appendChild(script);
     // Add the ability to use multiple JQuery load attempts.
     let attempts = 15;
-    (function(){
+    (function() {
       // Check again if jQuery is undefined.
-      if(typeof window.jQuery == 'undefined') {
+      if(typeof window.jQuery === 'undefined') {
         if(--attempts > 0) {
           // Calls himself in a few milliseconds.
           // if not loaded - try again.
