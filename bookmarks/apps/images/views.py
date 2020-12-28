@@ -7,6 +7,7 @@ from django.views.decorators.http import require_POST
 
 from .forms import ImageCreateForm
 from .models import Image
+from bookmarks.services.decorators import ajax_required
 
 
 @login_required
@@ -50,6 +51,7 @@ def image_detail(request, id, slug):
     )
 
 
+@ajax_required
 @login_required
 # Returns `HttpResponseNotAllowed`(status code 405) if method isn't POST.
 @require_POST
